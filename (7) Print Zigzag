@@ -1,0 +1,28 @@
+// Print Zigzag
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        pzz(n);
+    }
+    public static void pzz(int n) {
+        // Write your code here
+        // Base Condition
+        if (n == 0) {
+            return;
+        }
+        // Pre
+        System.out.print(n + " ");
+        // Left Call
+        pzz(n - 1);
+        // In
+        System.out.print(n + " ");
+        // Right Call
+        pzz(n - 1);
+        // Post
+        System.out.print(n + " ");
+    }
+}
