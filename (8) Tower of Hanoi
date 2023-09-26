@@ -1,0 +1,24 @@
+// Tower of Hanoi
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        char sourceDisk = sc.next().charAt(0);
+        char destinationDisk = sc.next().charAt(0);
+        char helperDisk = sc.next().charAt(0);
+        toh(n, sourceDisk, destinationDisk, helperDisk);
+    }
+    public static void toh(int n, char A, char B, char C) { // A -> sourceDisk , B -> destinationDisk , C -> helperDisk
+        // Write your code here
+        // Base Condition
+        if (n == 0) {
+            return;
+        }
+        toh(n - 1, A, C, B); // will print the instructions to move (n-1) disks from A to C using B [by following rules]
+        System.out.println(n + "[" + A + "->" + B + ']');
+        toh(n - 1, C, B, A); // will print the instructions to move (n-1) disks from C to B using A [by following rules]
+    }
+}
