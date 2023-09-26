@@ -1,0 +1,49 @@
+// Get Maze Path With Jumps
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        ArrayList < String > paths = getMazePaths(1, 1, n, m);
+        System.out.println(paths);
+    }
+    // sr - source row
+    // sc - source column
+    // dr - destination row
+    // dc - destination column
+    public static ArrayList < String > getMazePaths(int sr, int sc, int dr, int dc) {
+        // Write your code here
+        // Base Condition
+        if (sr == dr && sc == dc) {
+            ArrayList < String > bres = new ArrayList < > ();
+            bres.add("");
+            return bres;
+        }
+        ArrayList < String > paths = new ArrayList < > ();
+        // Horizontal Direction
+        for (int jump = 1; jump <= (dc - sc); jump++) {
+            ArrayList < String > horizontalPaths = getMazePaths(sr, sc + jump, dr, dc);
+            for (int i = 0; i < horizontalPaths.size(); i++) {
+                paths.add("h" + jump + horizontalPaths.get(i));
+            }
+        }
+        // Vertical Direction
+        for (int jump = 1; jump <= (dr - sr); jump++) {
+            ArrayList < String > verticalPaths = getMazePaths(sr + jump, sc, dr, dc);
+            for (int i = 0; i < verticalPaths.size(); i++) {
+                paths.add("v" + jump + verticalPaths.get(i));
+            }
+        }
+        // Diagonal Direction
+        for (int jump = 1; jump <= (dc - sc) && jump <= (dr - sr); jump++) {
+            ArrayList < String > diagonalPaths = getMazePaths(sr + jump, sc + jump, dr, dc);
+            for (int i = 0; i < diagonalPaths.size(); i++) {
+                paths.add("d" + jump + diagonalPaths.get(i));
+            }
+        }
+        return paths;
+    }
+}
