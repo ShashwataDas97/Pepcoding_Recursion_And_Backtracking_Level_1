@@ -1,0 +1,49 @@
+// First Index
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int d = sc.nextInt();
+        int fi = firstIndex(arr, 0, d);
+        System.out.println(fi);
+    }
+    
+    
+    // Method 1
+    // public static int firstIndex(int[] arr, int idx, int x) {
+    //     // Write your code here
+    //     // Base Condition
+    //     if (idx == arr.length) {
+    //         return -1;
+    //     }
+    //     int fiisa = firstIndex(arr, idx + 1, x);
+    //     if (arr[idx] == x) {
+    //         return idx;
+    //     } else {
+    //         return fiisa;
+    //     }
+    // }
+    
+    
+    // Method 2 (Smart Way)
+    public static int firstIndex(int[] arr, int idx, int x) {
+        // Write your code here
+        // Base Condition
+        if (idx == arr.length) {
+            return -1;
+        }
+        if (arr[idx] == x) {
+            return idx;
+        } else {
+            int fiisa = firstIndex(arr, idx + 1, x);
+            return fiisa;
+        }
+    }
+}
