@@ -1,0 +1,47 @@
+// All Indices Of Array
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int x = sc.nextInt();
+        int[] iarr = allIndices(arr, x, 0, 0);
+        if (iarr.length == 0) {
+            System.out.println();
+            return;
+        }
+        for (int i = 0; i < iarr.length; i++) {
+            System.out.println(iarr[i]);
+        }
+    }
+    public static int[] allIndices(int[] arr, int x, int idx, int fsf) {
+        // Write your code here
+        ArrayList < Integer > list = new ArrayList < > ();
+        helper(list, arr, x, idx);
+        Collections.reverse(list);
+        int ans[] = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            ans[i] = list.get(i);
+        }
+        return ans;
+    }
+    public static int helper(ArrayList < Integer > list, int[] arr, int x, int idx) {
+        // Base Condition
+        if (idx == arr.length) {
+            return -1;
+        }
+        int fiisa = helper(list, arr, x, idx + 1);
+        if (arr[idx] == x) {
+            list.add(idx);
+            return idx;
+        } else {
+            return fiisa;
+        }
+    }
+}
