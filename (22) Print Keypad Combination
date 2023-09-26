@@ -1,0 +1,28 @@
+// Print Keypad Combination
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static String[] keys = {".;" , "abc" , "def" , "ghi" , "jkl" , "mno" , "pqrs" , "tu" , "vwx" , "yz"};
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        printKPC(str, "");
+    }
+    public static void printKPC(String str, String asf) { // asf --> path so far
+        // Write your code here
+        // Base Condition
+        if (str.length() == 0) {
+            System.out.println(asf);
+            return;
+        }
+        char ch = str.charAt(0);
+        String ros = str.substring(1);
+        int no = ch - '0';
+        String letters = keys[no];
+        for (int i = 0; i < letters.length(); i++) {
+            char alphabet = letters.charAt(i);
+            printKPC(ros, asf + alphabet);
+        }
+    }
+}
