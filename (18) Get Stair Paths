@@ -1,0 +1,38 @@
+// Get Stair Paths
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        ArrayList < String > paths = getStairPaths(n);
+        System.out.println(paths);
+    }
+    public static ArrayList < String > getStairPaths(int n) {
+        // Write your code here
+        // Base Condition
+        if (n == 0) { // Positive Base Case
+            ArrayList < String > bres = new ArrayList < > ();
+            bres.add("");
+            return bres;
+        } else if (n < 0) { // Negative Base Case
+            ArrayList < String > bres = new ArrayList < > ();
+            return bres;
+        }
+        ArrayList < String > climb1Step = getStairPaths(n - 1);
+        ArrayList < String > climb2Step = getStairPaths(n - 2);
+        ArrayList < String > climb3Step = getStairPaths(n - 3);
+        ArrayList < String > mres = new ArrayList < > ();
+        for (int i = 0; i < climb1Step.size(); i++) {
+            mres.add("1" + climb1Step.get(i));
+        }
+        for (int i = 0; i < climb2Step.size(); i++) {
+            mres.add("2" + climb2Step.get(i));
+        }
+        for (int i = 0; i < climb3Step.size(); i++) {
+            mres.add("3" + climb3Step.get(i));
+        }
+        return mres;
+    }
+}
